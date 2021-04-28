@@ -1,5 +1,7 @@
 package lesson2;
 
+import lesson1.Month;
+
 public class App {
 
     public static void main(String[] args) {

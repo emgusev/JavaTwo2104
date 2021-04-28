@@ -1,4 +1,4 @@
-package lesson2;
+package lesson1;
 
 public class Car {
     private final String color;

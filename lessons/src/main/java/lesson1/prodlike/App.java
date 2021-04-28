@@ -1,7 +1,7 @@
-package prodlike;
+package lesson1.prodlike;
 
-import prodlike.impl.CachedPublicationService;
-import prodlike.impl.DbPublicationService;
+import lesson1.prodlike.impl.CachedPublicationService;
+import lesson1.prodlike.impl.DbPublicationService;
 
 public class App {
 
