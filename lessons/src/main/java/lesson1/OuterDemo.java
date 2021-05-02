@@ -1,4 +1,4 @@
-package lesson2;
+package lesson1;
 
 public class OuterDemo {
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package lesson1;
+
 public class LessonApp {
     public static void main(String[] args) {
         User user = new AgedUser("name", 15);

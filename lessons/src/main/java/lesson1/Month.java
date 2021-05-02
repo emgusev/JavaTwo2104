@@ -1,4 +1,4 @@
-package lesson2;
+package lesson1;
 
 public enum Month {
     JAN("January", 1),
