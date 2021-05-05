@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 
 public class App {
 
@@ -23,6 +24,7 @@ public class App {
         list.add("string");
         List<String> list2 = new LinkedList<>(list);
         list = new ArrayList<>(list2);
+        list.removeIf(s -> s.length() < 3);
         System.out.println(list);
 
         System.out.println(list.get(1));
