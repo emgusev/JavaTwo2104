@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import lesson7.ChatConstants;
+
 public class EchoClient extends JFrame {
 
     private Socket socket;
@@ -42,8 +44,19 @@ public class EchoClient extends JFrame {
         socket = new Socket(EchoConstants.HOST, EchoConstants.PORT);
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
+
         new Thread(() -> {
             try {
+                //auth
+                while (true) {
+                    String strFromServer = inputStream.readUTF();
+                    if (strFromServer.equals(ChatConstants.AUTH_OK)) {
+                        break;
+                    }
+                    chatArea.append(strFromServer);
+                    chatArea.append("\n");
+                }
+                //read
                 while (true) {
                     String strFromServer = inputStream.readUTF();
                     if (strFromServer.equals(EchoConstants.STOP_WORD)) {
