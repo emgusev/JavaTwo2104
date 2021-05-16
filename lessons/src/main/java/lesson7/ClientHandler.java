@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -51,8 +53,17 @@ public class ClientHandler {
             System.out.println("от " + name + ": " + messageFromClient);
             if (messageFromClient.equals(ChatConstants.STOP_WORD)) {
                 return;
+            } else if (messageFromClient.startsWith(ChatConstants.SEND_TO_LIST)) {
+                String[] splittedStr = messageFromClient.split("\\s+");
+                List<String> nicknames = new ArrayList<>();
+                for (int i = 1; i < splittedStr.length - 1; i++) {
+                    nicknames.add(splittedStr[i]);
+                }
+            } else if (messageFromClient.startsWith(ChatConstants.CLIENTS_LIST)) {
+                server.broadcastClients();
+            } else {
+                server.broadcastMessage("[" + name + "]: " + messageFromClient);
             }
-            server.broadcastMessage("[" + name + "]: " + messageFromClient);
 
         }
     }
@@ -82,7 +93,7 @@ public class ClientHandler {
         }
     }
 
-    public void sendMsg(String message)  {
+    public void sendMsg(String message) {
         try {
             outputStream.writeUTF(message);
         } catch (IOException e) {

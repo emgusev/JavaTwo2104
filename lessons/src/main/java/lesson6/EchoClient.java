@@ -61,8 +61,11 @@ public class EchoClient extends JFrame {
                     String strFromServer = inputStream.readUTF();
                     if (strFromServer.equals(EchoConstants.STOP_WORD)) {
                         break;
+                    } else if (strFromServer.startsWith(ChatConstants.CLIENTS_LIST)) {
+                        chatArea.append("Сейчас онлайн "+ strFromServer);
+                    } else {
+                        chatArea.append(strFromServer);
                     }
-                    chatArea.append(strFromServer);
                     chatArea.append("\n");
                 }
             } catch (IOException ex) {
